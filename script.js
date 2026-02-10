@@ -1,28 +1,203 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Expanded Product Data
-    const products = [
-        { id: 1, title: "Atlas of Stars", author: "Galileo (Echo)", price: 45.00, category: "sci-fi", era: "2150 AD", weight: "2.4 lbs", desc: "A holographic guide to the colonized systems." },
-        { id: 2, title: "Grimoire of Shadows", author: "Merlin Ambrosis", price: 120.00, category: "fantasy", era: "500 AD", weight: "5.1 lbs", desc: "Bound in dragon leather, whispers when closed." },
-        { id: 3, title: "The Lost Scroll", author: "Unknown Scribe", price: 85.50, category: "ancient", era: "1200 BC", weight: "0.5 lbs", desc: "Fragment of the Library of Alexandria." },
-        { id: 4, title: "Clockwork Heart", author: "Artificer X", price: 50.00, category: "sci-fi", era: "1890 Alt", weight: "1.2 lbs", desc: "Blueprints for a steam-powered soul." },
-        { id: 5, title: "Dragon's Blood Ink", author: "Alchemist Guild", price: 25.00, category: "fantasy", era: "1400 AD", weight: "0.8 lbs", desc: "Never fades, glows near gold." },
-        { id: 6, title: "Sunken City Map", author: "Captain Nemo", price: 200.00, category: "ancient", era: "1870 AD", weight: "1.5 lbs", desc: "Chart to the ruins of Atlantis." },
-        { id: 7, title: "Quantum Spells", author: "Dr. Strange-ish", price: 60.00, category: "sci-fi", era: "3000 AD", weight: "0.0 lbs", desc: "Spells encoded in light particles." },
-        { id: 8, title: "Fairy Dust Vial", author: "Tinker Bell", price: 15.00, category: "fantasy", era: "Neverland", weight: "0.1 lbs", desc: "Do not inhale. Side effects: flight." },
-        { id: 9, title: "Aztec Sun Stone", author: "Montezu-map", price: 300.00, category: "ancient", era: "1400 AD", weight: "20 lbs", desc: "A heavy replica of the calendar stone." },
-        { id: 10, title: "Neon Bible", author: "Arcade Fire", price: 20.00, category: "sci-fi", era: "2007 AD", weight: "1.0 lbs", desc: "A sonic journey through the suburbs." },
-        { id: 11, title: "Phoenix Feather", author: "Fawkes", price: 500.00, category: "fantasy", era: "1990 AD", weight: "0.01 lbs", desc: "Core material for wands." },
-        { id: 12, title: "Rosetta Tablet", author: "Napoleon's Team", price: 150.00, category: "ancient", era: "196 BC", weight: "12 lbs", desc: "Key to deciphering hieroglyphs." }
-    ];
+    // 1. Procedural Image Generator
+    function generateProductArt(type, title) {
+        // Generate a unique color based on the title length to keep it consistent
+        const colors = ["#8b0000", "#2c1e12", "#555555", "#b8860b", "#4a3b2a", "#1a1a1a"];
+        const accent = colors[title.length % colors.length];
 
-    // Offers Data
+        // Base SVG structure
+        let content = '';
+
+        const t = title.toLowerCase();
+
+        if (t.includes("scroll") || t.includes("map") || t.includes("blueprint") || type === "ancient") {
+            // Scroll / Map
+            content = `
+                <rect x="40" y="40" width="120" height="120" fill="#fdfbf7" stroke="${accent}" stroke-width="3"/>
+                <path d="M50,50 L150,50 M50,150 L150,150" stroke="${accent}" stroke-width="5" stroke-linecap="round"/>
+                <path d="M60,70 Q100,60 140,70 M60,90 Q100,80 140,90 M60,110 Q100,100 140,110 M60,130 Q100,120 140,130" stroke="${accent}" stroke-width="1" fill="none"/>
+                <circle cx="100" cy="100" r="15" stroke="${accent}" stroke-width="2" fill="none" opacity="0.3"/>
+            `;
+        } else if (t.includes("bottle") || t.includes("ink") || t.includes("vial") || t.includes("dust") || t.includes("feather")) {
+            // Potion / Item
+            content = `
+                <path d="M80,60 L120,60 L120,90 L150,140 L150,160 Q150,180 100,180 Q50,180 50,160 L50,140 L80,90 Z" fill="rgba(139, 0, 0, 0.1)" stroke="${accent}" stroke-width="3"/>
+                <rect x="75" y="50" width="50" height="15" fill="${accent}"/>
+                <circle cx="100" cy="130" r="15" fill="${accent}" opacity="0.6"/>
+            `;
+        } else if (t.includes("clockwork") || t.includes("stone") || t.includes("tablet") || t.includes("heart")) {
+            // Artifact / Gear
+            content = `
+                <circle cx="100" cy="100" r="50" stroke="${accent}" stroke-width="8" fill="none" stroke-dasharray="15,10"/>
+                <circle cx="100" cy="100" r="20" fill="${accent}"/>
+                <line x1="100" y1="30" x2="100" y2="170" stroke="${accent}" stroke-width="4"/>
+                <line x1="30" y1="100" x2="170" y2="100" stroke="${accent}" stroke-width="4"/>
+            `;
+        } else {
+            // Book / Tome (Default)
+            content = `
+                <rect x="60" y="30" width="80" height="140" fill="${accent}" stroke="#2c1e12" stroke-width="3" rx="4"/>
+                <rect x="50" y="30" width="15" height="140" fill="#2c1e12"/>
+                <circle cx="100" cy="80" r="20" stroke="#fdfbf7" stroke-width="2" fill="none"/>
+                <line x1="100" y1="120" x2="100" y2="150" stroke="#fdfbf7" stroke-width="2"/>
+                <line x1="85" y1="135" x2="115" y2="135" stroke="#fdfbf7" stroke-width="2"/>
+            `;
+        }
+
+        const svgParam = encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">${content}</svg>`);
+        return `data:image/svg+xml;charset=utf-8,${svgParam}`;
+    }
+
+    // 2. Product Data (Empty - waiting for manual entries)
+    const products = [];
+
+    // Assign Images dynamically (only if not already provided)
+    products.forEach(p => {
+        if (!p.image) {
+            p.image = generateProductArt(p.category, p.title);
+        }
+    });
+
+    //EXAMPLE: How to add a product manually with a custom image
+    products.push({
+        id: 1,
+        title: "Atlas of Stars",
+        author: "User",
+        price: 400.00,
+        category: "fantasy",
+        era: "2024",
+        weight: "1.0",
+        desc: "Description",
+        image: "image/5.jpg" // <--- Add your image link here
+    });
+    products.push({
+        id: 2,
+        title: "Grimoire of Shadows",
+        author: "User",
+        price: 500.00,
+        category: "fantasy",
+        era: "2024",
+        weight: "1.0",
+        desc: "Description",
+        image: "image/3.png" // <--- Add your image link here
+    });
+    products.push({
+        id: 3,
+        title: "The Lost Scroll",
+        author: "User",
+        price: 799.00,
+        category: "fantasy",
+        era: "2024",
+        weight: "1.0",
+        desc: "Description",
+        image: "image/2.png" // <--- Add your image link here
+    });
+    products.push({
+        id: 1,
+        title: "Clockwork Heart",
+        author: "User",
+        price: 800.00,
+        category: "fantasy",
+        era: "2024",
+        weight: "1.0",
+        desc: "Description",
+        image: "image/1.png" // <--- Add your image link here
+    });
+    products.push({
+        id: 2,
+        title: "Dragon's Blood Ink",
+        author: "User",
+        price: 100.00,
+        category: "fantasy",
+        era: "2024",
+        weight: "1.0",
+        desc: "Description",
+        image: "image/3.png" // <--- Add your image link here
+    });
+    products.push({
+        id: 3,
+        title: "Sunken City Map",
+        author: "User",
+        price: 189.00,
+        category: "fantasy",
+        era: "2024",
+        weight: "1.0",
+        desc: "Description",
+        image: "image/4.jpg" // <--- Add your image link here
+    });
+    products.push({
+        id: 1,
+        title: "Quantum Spells",
+        author: "User",
+        price: 294.00,
+        category: "fantasy",
+        era: "2024",
+        weight: "1.0",
+        desc: "Description",
+        image: "image/1.png" // <--- Add your image link here
+    });
+    products.push({
+        id: 2,
+        title: "Fairy Dust Vial",
+        author: "User",
+        price: 789.00,
+        category: "fantasy",
+        era: "2024",
+        weight: "1.0",
+        desc: "Description",
+        image: "image/3.png" // <--- Add your image link here
+    });
+    products.push({
+        id: 3,
+        title: "Aztec Sun Stone",
+        author: "User",
+        price: 125.00,
+        category: "fantasy",
+        era: "2024",
+        weight: "1.0",
+        desc: "Description",
+        image: "image/2.png" // <--- Add your image link here
+    });
+    products.push({
+        id: 1,
+        title: "Neon Bible",
+        author: "User",
+        price: 369.00,
+        category: "fantasy",
+        era: "2024",
+        weight: "1.0",
+        desc: "Description",
+        image: "image/1.png" // <--- Add your image link here
+    });
+        products.push({
+        id: 3,
+        title: "Phoenix Feather",
+        author: "User",
+        price: 799.00,
+        category: "fantasy",
+        era: "2024",
+        weight: "1.0",
+        desc: "Description",
+        image: "image/6.jpg" // <--- Add your image link here
+    });
+    products.push({
+        id: 1,
+        title: "Rosetta Tablet",
+        author: "User",
+        price: 800.00,
+        category: "fantasy",
+        era: "2024",
+        weight: "1.0",
+        desc: "Description",
+        image: "image/5.jpg" // <--- Add your image link here
+    });
+
+    // 3. Offers Data
     const offers = [
-        { id: 101, title: "Beginner's Spellbook", desc: "Slightly singed, perfect for apprentices.", price: 15.00, oldPrice: 30.00, badge: "-50%" },
-        { id: 102, title: "Rusty Compass", desc: "Points to what you desire most.", price: 40.00, oldPrice: 60.00, badge: "Deal" }
+        { id: 101, title: "Beginner's Spellbook", desc: "Slightly singed, perfect for apprentices.", price: 15.00, oldPrice: 30.00, badge: "-50%", category: "fantasy" },
+        { id: 102, title: "Rusty Compass", desc: "Points to what you desire most.", price: 40.00, oldPrice: 60.00, badge: "Deal", category: "ancient" }
     ];
 
-    // Load Cart from LocalStorage
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     // DOM Elements
     const productGrid = document.getElementById('product-grid');
@@ -56,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize
     renderProducts('all');
     renderOffers();
-    updateCartUI(); // Load initial state
+    updateCartUI();
 
     // Cursor Logic
     document.addEventListener('mousemove', (e) => {
@@ -92,6 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
             card.className = 'offer-card';
             card.innerHTML = `
                 <div class="offer-badge">${offer.badge}</div>
+                
                 <h3 class="offer-title">${offer.title}</h3>
                 <p class="offer-desc">"${offer.desc}"</p>
                 <div class="card-footer" style="border:none; margin-top:0;">
@@ -135,11 +311,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             };
             card.innerHTML = `
-                <div class="product-image">
-                    <div style="text-align:center; padding: 10px; color: #d4c5a9; font-family: 'Cinzel Decorative', cursive;">
-                        <i class="fas fa-book" style="font-size: 3rem; margin-bottom: 10px; opacity: 0.7;"></i><br>
-                        ${product.title}
-                    </div>
+                <div class="product-image" style="display:block; padding:0; background:none; border:none; height:350px;">
+                    <img src="${product.image}" alt="${product.title}" style="width:100%; height:100%; object-fit:contain; padding:20px;">
                 </div>
                 <div class="product-info">
                     <h3>${product.title}</h3>
@@ -165,6 +338,11 @@ document.addEventListener('DOMContentLoaded', () => {
         modalEra.textContent = product.era;
         modalWeight.textContent = product.weight;
         modalPrice.textContent = `${product.price.toFixed(2)} Gold`;
+
+        // Update Modal Image
+        const modalImgContainer = document.querySelector('.modal-img');
+        modalImgContainer.innerHTML = `<img src="${product.image}" style="width:100%; height:100%; object-fit:contain;">`;
+        modalImgContainer.style.background = 'none'; // Remove placeholder bg
 
         modalAddBtn.onclick = () => {
             addToCart(product.id);
