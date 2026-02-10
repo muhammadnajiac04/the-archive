@@ -1,0 +1,36 @@
+<svg width="150" height="200" viewBox="0 0 150 200" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#e0e0e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Sketchy Head -->
+        <path d="M75,20 C60,18 50,30 55,45 C60,55 80,58 90,45 C95,35 85,22 75,20" />
+        <path d="M65,30 Q75,35 85,30" opacity="0.6" /> <!-- Eyes hint -->
+        
+        <!-- Scarf / Cape blowing back -->
+        <path d="M60,45 Q40,40 20,20" stroke="#00f3ff" stroke-width="1.5" stroke-dasharray="5,2" />
+        <path d="M65,50 Q30,60 10,40" stroke="#00f3ff" stroke-width="1.5" stroke-dasharray="3,3" />
+
+        <!-- Body / Torso -->
+        <path d="M70,48 Q75,80 72,100" />
+        <path d="M78,50 Q82,85 75,100" />
+
+        <!-- Sketchy Arms (Running pose) -->
+        <path d="M72,60 Q50,70 40,55" /> <!-- Left arm back -->
+        <path d="M78,60 Q100,70 115,50" /> <!-- Right arm forward -->
+
+        <!-- Sketchy Legs (Running pose) -->
+        <path d="M72,100 Q90,110 110,105 Q120,120 105,130" /> <!-- Right leg forward -->
+        <path d="M75,100 Q60,120 40,115 Q30,135 50,145" /> <!-- Left leg back -->
+        
+        <!-- Glowing Core -->
+        <circle cx="75" cy="65" r="5" fill="#00f3ff" filter="url(#glow)" stroke="none" opacity="0.8"/>
+    </g>
+    
+    <defs>
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+</svg>

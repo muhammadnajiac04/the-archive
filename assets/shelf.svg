@@ -1,0 +1,8 @@
+<svg width="300" height="40" viewBox="0 0 300 40" xmlns="http://www.w3.org/2000/svg">
+    <rect width="300" height="10" fill="#5a4a3a" rx="2" ry="2"/>
+    <rect x="10" y="10" width="280" height="30" fill="none"/> 
+    <!-- Books -->
+    <rect x="20" y="-30" width="20" height="40" fill="#8b4513" rx="1"/>
+    <rect x="42" y="-35" width="25" height="45" fill="#2f4f4f" rx="1"/>
+    <rect x="69" y="-25" width="15" height="35" fill="#a52a2a" rx="1"/>
+</svg>

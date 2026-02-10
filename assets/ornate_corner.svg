@@ -1,0 +1,11 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#2c1e12" stroke-width="2">
+        <!-- Corner Flourish -->
+        <path d="M10,40 Q10,10 40,10" />
+        <path d="M15,40 Q15,15 40,15" />
+        <circle cx="10" cy="10" r="3" fill="#8b0000" stroke="none"/>
+        <path d="M5,50 L5,20 Q5,5 20,5 L50,5" stroke-width="1"/>
+        <!-- Decorative bits -->
+        <path d="M20,20 L30,30 M20,30 L30,20" stroke-width="0.5"/>
+    </g>
+</svg>
