@@ -273,8 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
             card.className = 'offer-card';
             card.innerHTML = `
                 <div class="offer-badge">${offer.badge}</div>
-                <img src="${offer.image}" alt="${offer.title}" style="width:100%; height:150px; object-fit:contain; margin-bottom:15px; border-bottom:1px solid #ddd;">
-                <h3 class="offer-title">${offer.title}</h3>
+                 <h3 class="offer-title">${offer.title}</h3>
                 <p class="offer-desc">"${offer.desc}"</p>
                 <div class="card-footer" style="border:none; margin-top:0;">
                     <div>
