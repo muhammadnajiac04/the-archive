@@ -48,21 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return `data:image/svg+xml;charset=utf-8,${svgParam}`;
     }
 
-    // 2. Expanded Product Data
-    const products = [
-        { id: 1, title: "Atlas of Stars", author: "Galileo (Echo)", price: 45.00, category: "sci-fi", era: "2150 AD", weight: "2.4 lbs", desc: "A holographic guide to the colonized systems.", image: "https://images.unsplash.com/photo-1536697246787-1d5da56cb9c9?auto=format&fit=crop&w=600" }, // Celestial Map
-        { id: 2, title: "Grimoire of Shadows", author: "Merlin Ambrosis", price: 120.00, category: "fantasy", era: "500 AD", weight: "5.1 lbs", desc: "Bound in dragon leather, whispers when closed.", image: "https://images.unsplash.com/photo-1544414008-59b43343335e?auto=format&fit=crop&w=600" }, // Dark Book
-        { id: 3, title: "The Lost Scroll", author: "Unknown Scribe", price: 85.50, category: "ancient", era: "1200 BC", weight: "0.5 lbs", desc: "Fragment of the Library of Alexandria.", image: "https://images.unsplash.com/photo-1599894019799-27083049583c?auto=format&fit=crop&w=600" }, // Papyrus
-        { id: 4, title: "Clockwork Heart", author: "Artificer X", price: 50.00, category: "sci-fi", era: "1890 Alt", weight: "1.2 lbs", desc: "Blueprints for a steam-powered soul.", image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=600" }, // Gears
-        { id: 5, title: "Dragon's Blood Ink", author: "Alchemist Guild", price: 25.00, category: "fantasy", era: "1400 AD", weight: "0.8 lbs", desc: "Never fades, glows near gold.", image: "https://images.unsplash.com/photo-1515549832467-b39d3447cd1e?auto=format&fit=crop&w=600" }, // Red Ink/Liquid
-        { id: 6, title: "Sunken City Map", author: "Captain Nemo", price: 200.00, category: "ancient", era: "1870 AD", weight: "1.5 lbs", desc: "Chart to the ruins of Atlantis.", image: "https://images.unsplash.com/photo-1524666643752-b381eb00effb?auto=format&fit=crop&w=600" }, // Old Map
-        { id: 7, title: "Quantum Spells", author: "Dr. Strange-ish", price: 60.00, category: "sci-fi", era: "3000 AD", weight: "0.0 lbs", desc: "Spells encoded in light particles." },
-        { id: 8, title: "Fairy Dust Vial", author: "Tinker Bell", price: 15.00, category: "fantasy", era: "Neverland", weight: "0.1 lbs", desc: "Do not inhale. Side effects: flight.", image: "https://images.unsplash.com/photo-1598157778946-b63bf015b638?auto=format&fit=crop&w=600" }, // Glitter/Vial
-        { id: 9, title: "Aztec Sun Stone", author: "Montezu-map", price: 300.00, category: "ancient", era: "1400 AD", weight: "20 lbs", desc: "A heavy replica of the calendar stone.", image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600" }, // Stone texture
-        { id: 10, title: "Neon Bible", author: "Arcade Fire", price: 20.00, category: "sci-fi", era: "2007 AD", weight: "1.0 lbs", desc: "A sonic journey through the suburbs." },
-        { id: 11, title: "Phoenix Feather", author: "Fawkes", price: 500.00, category: "fantasy", era: "1990 AD", weight: "0.01 lbs", desc: "Core material for wands.", image: "https://images.unsplash.com/photo-1497215842964-222b430dc0a8?auto=format&fit=crop&w=600" }, // Feather
-        { id: 12, title: "Rosetta Tablet", author: "Napoleon's Team", price: 150.00, category: "ancient", era: "196 BC", weight: "12 lbs", desc: "Key to deciphering hieroglyphs.", image: "https://images.unsplash.com/photo-1599894019799-27083049583c?auto=format&fit=crop&w=600" } // Same Papyrus for now
-    ];
+    // 2. Product Data (Empty - waiting for manual entries)
+    const products = [];
 
     // Assign Images dynamically (only if not already provided)
     products.forEach(p => {
@@ -71,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-        //EXAMPLE: How to add a product manually with a custom image
+    //EXAMPLE: How to add a product manually with a custom image
     products.push({
         id: 1,
         title: "Atlas of Stars",
@@ -204,7 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
         desc: "Description",
         image: "image/5.jpg" // <--- Add your image link here
     });
-
 
     // 3. Offers Data
     const offers = [
